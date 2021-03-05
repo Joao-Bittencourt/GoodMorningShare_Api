@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
               
     </head>
-    <body>
+    <body style="margin: 0px; background: #0e0e0e; height: 100%">
 
         <div class="container">
             <?= $this->Flash->render() ?>

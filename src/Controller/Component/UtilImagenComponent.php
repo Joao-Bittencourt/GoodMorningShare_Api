@@ -31,6 +31,7 @@ class UtilImagenComponent extends Component {
         
         return false;
     }
+  
     public function buscaDadosMany($contador = 0) {
         error_reporting(0);
         
