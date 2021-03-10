@@ -34,6 +34,7 @@ class ImagensControllerTest extends TestCase
      */
     public function testlistar(): void
     {
+        $this->get('/imagens/listar');
         $this->assertResponseCode(200);
     }
 
@@ -44,7 +45,8 @@ class ImagensControllerTest extends TestCase
      */
     public function testAdicionar(): void
     {
-         $this->assertResponseCode(400);
+        $this->get('/imagens/adicionar/1');
+        $this->assertResponseCode(200);
     }
 
 }
