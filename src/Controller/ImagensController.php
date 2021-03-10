@@ -11,7 +11,6 @@ class ImagensController extends AppController {
         parent::initialize();
         $this->loadComponent('RequestHandler');
         $this->loadComponent('UtilImagen');
-//        $this->loadComponent('UtilArquivo');
     }
 
     public function detalhar($id = null) {
@@ -83,15 +82,8 @@ class ImagensController extends AppController {
                     ->withStringBody(json_encode($retorno));
             return $response;
         }
-
-//        $retorno['mensage'] = ['type of request not expected'];
-//        $retorno['error'] = ['97'];
-//        $response = $this->response
-//                ->withType('application/json')
-//                ->withStatus(400)
-//                ->withStringBody(json_encode($retorno));
-//        return $response;
-           $this->set(compact('imagens'));
+        
+        $this->set(compact('imagens'));
     }
 
     public function importar() {
