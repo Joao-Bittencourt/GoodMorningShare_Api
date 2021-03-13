@@ -4,7 +4,7 @@
     processIsolation="false"
     stopOnFailure="false"
     bootstrap="tests/bootstrap.php"
->
+    >
     <php>
         <ini name="memory_limit" value="-1"/>
         <ini name="apc.enable_cli" value="1"/>
@@ -37,12 +37,11 @@
             </exclude>
         </whitelist>
     </filter>
-    
     <logging>
-        <log type="tap" target="webroot/report.tap"/>
-        <log type="junit" target="webroot/report.junit.xml"/>
+        <log type="tap" target="webroot/coverage/report.tap"/>
+        <log type="junit" target="webroot/coverage/report.junit.xml"/>
         <log type="coverage-html" target="webroot/coverage" charset="UTF-8" yui="true" highlight="true"/>
-        <log type="coverage-text" target="webroot/coverage.txt"/>
-        <log type="coverage-clover" target="webroot/clover.xml"/>
+        <log type="coverage-text" target="webroot/coverage/coverage.txt"/>
+        <log type="coverage-clover" target="webroot/coverage/clover.xml"/>
     </logging>
 </phpunit>

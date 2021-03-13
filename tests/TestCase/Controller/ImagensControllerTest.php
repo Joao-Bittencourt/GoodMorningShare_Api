@@ -13,8 +13,8 @@ use Cake\TestSuite\TestCase;
  *
  * @uses \App\Controller\ImagensController
  */
-class ImagensControllerTest extends TestCase
-{
+class ImagensControllerTest extends TestCase {
+
     use IntegrationTestTrait;
 
     /**
@@ -26,15 +26,75 @@ class ImagensControllerTest extends TestCase
         'app.Imagens',
     ];
 
-    
     /**
      * Test listar method
      *
      * @return void
      */
-    public function testlistar(): void
-    {
+    public function testlistar(): void {
         $this->get('/imagens/listar');
+        $this->assertResponseCode(200);
+    }
+
+    /**
+     * Test detalhar method
+     *
+     * @return void
+     */
+    public function testDetalhar(): void {
+        $this->get('/imagens/detalhar/1');
+        $this->assertResponseCode(200);
+    }
+
+    /**
+     * Test detalhar method
+     *
+     * @return void
+     */
+    public function testDetalharSemId(): void {
+        $this->get('/imagens/detalhar/');
+        $this->assertResponseCode(400);
+    }
+
+    /**
+     * Test add method
+     *
+     * @return void
+     */
+//    public function testAdicionarComErro(): void {
+//
+//        $data = [
+//            'nome' => 'Lorem ipsum dolor sit amet',
+//            'url' => 'https://teste.com',
+//            'created' => '2021-02-20 17:36:46',
+//            'created_by' => 1,
+//            'modified' => '2021-02-20 17:36:46',
+//            'modified_by' => 1,
+//            'status' => 'status 1',
+//        ];
+//
+//        $this->post('/imagens/adicionar/', ['data' => $data]);
+//        $this->assertResponseCode(400);
+//    }
+    
+    /**
+     * Test add method
+     *
+     * @return void
+     */
+    public function testAdicionar(): void {
+
+        $data = [
+            'nome' => 'Lorem ipsum dolor sit amet',
+            'url' => 'https://teste.com',
+            'created' => '2021-02-20 17:36:46',
+            'created_by' => 1,
+            'modified' => '2021-02-20 17:36:46',
+            'modified_by' => 1,
+            'status' => 1,
+        ];
+
+        $this->post('/imagens/adicionar/', ['data' => $data]);
         $this->assertResponseCode(200);
     }
 
@@ -43,9 +103,8 @@ class ImagensControllerTest extends TestCase
      *
      * @return void
      */
-    public function testAdicionar(): void
-    {
-        $this->get('/imagens/adicionar/1');
+    public function testAdicionarGet(): void {
+        $this->get('/imagens/adicionar/');
         $this->assertResponseCode(200);
     }
 

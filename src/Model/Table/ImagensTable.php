@@ -79,7 +79,7 @@ class ImagensTable extends Table
         $validator
             ->integer('status')
             ->notEmptyString('status');
-
+          
         return $validator;
     }
 }

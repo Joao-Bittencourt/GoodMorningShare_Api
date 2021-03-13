@@ -47,24 +47,22 @@ class ImagensController extends AppController {
 
         if ($this->request->is('post')) {
         // -----------------------------------------------------
-            if (empty($this->request->getData())) {
-                echo "Go back and Select file to upload.";
-                return;
-            }
-           $fileImagen = $this->request->getData('arquivo');
-           
-            $file_name = $fileImagen->getClientFilename();
-           
-            $path = WWW_ROOT.'uploads' .DS. $file_name;
-            $fileImagen->moveTo($path);
-            
-            $this->loadComponent('UtilArquivo');
-            $folder_id = $this->UtilArquivo->create_folder("google-drive-test-folder");
-            $success = $this->UtilArquivo->insert_file_to_drive($path, $file_name, $folder_id);
+//            if (!empty($this->request->getData('arquivo'))) {
+//                
+//                $fileImagem = $this->request->getData('arquivo');
+//                $file_name = $fileImagen->getClientFilename();
+//
+//                $path = WWW_ROOT . 'uploads' . DS . $file_name;
+//                $fileImagem->moveTo($path);
+//
+//                $this->loadComponent('UtilArquivo');
+//                $folder_id = $this->UtilArquivo->create_folder("google-drive-test-folder");
+//                $success = $this->UtilArquivo->insert_file_to_drive($path, $file_name, $folder_id);
+//            }
         // ----------------------------------------
-            
+          
             $imagens = $this->Imagens->patchEntity($imagens, $this->request->getData());
-
+            
             if ($this->Imagens->save($imagens)) {
                 $retorno['mensage'] = 'Dados inseridos com sucesso';
                 $retorno['error'] = '0';
@@ -74,6 +72,7 @@ class ImagensController extends AppController {
                         ->withStringBody(json_encode($retorno));
                 return $response;
             }
+            
             $retorno['errors'] = $Imagens->getErrors();
 
             $response = $this->response
