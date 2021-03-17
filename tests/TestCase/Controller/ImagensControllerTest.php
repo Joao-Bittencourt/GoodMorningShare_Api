@@ -107,5 +107,24 @@ class ImagensControllerTest extends TestCase {
         $this->get('/imagens/adicionar/');
         $this->assertResponseCode(200);
     }
+    
+    /**
+     * Test add method
+     *
+     * @return void
+     */
+    public function testImportar(): void {
+        $this->get('/imagens/importar/');
+        $this->assertResponseCode(200);
+    }
+    /**
+     * Test add method
+     *
+     * @return void
+     */
+    public function testImportarMany(): void {
+        $this->get('/imagens/importarMany/');
+        $this->assertResponseCode(200);
+    }
 
 }
