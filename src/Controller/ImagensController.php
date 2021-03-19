@@ -46,7 +46,6 @@ class ImagensController extends AppController {
         $imagens = $this->Imagens->newEmptyEntity();
 
         if ($this->request->is('post')) {
-        //-----------------------------------------------------
             if (!empty($this->request->getData('arquivo'))) {
                 
                 $fileImagem = $this->request->getData('arquivo');
@@ -55,13 +54,10 @@ class ImagensController extends AppController {
                 $path = WWW_ROOT . 'uploads' . DS . $file_name;
                 $fileImagem->moveTo($path);
 
-                $this->loadComponent('UtilArquivo');
-                $folder_id = $this->UtilArquivo->create_folder("google-drive-test-folder");
-                
-                $success = $this->UtilArquivo->insert_file_to_drive($path, $file_name, $folder_id);
+                $this->loadComponent('UtilArquivo');               
+                $success = $this->UtilArquivo->insert_file_to_drive($path, $file_name);
             }
-        // ----------------------------------------
-          
+   
             $imagens = $this->Imagens->patchEntity($imagens, $this->request->getData());
             
             if ($this->Imagens->save($imagens)) {
