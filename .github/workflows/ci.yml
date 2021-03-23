@@ -27,12 +27,27 @@ jobs:
       uses: actions/checkout@v1  
       
     - name: Setup MySQL 5.6
-      run: docker run --rm --name=mysqld -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=cakephp -p 3306:3306 -d mysql:5.6 --character-set-server=utf8
+      run: docker run --rm --name=mysqld -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_DATABASE=test_myapp -p 3306:3306 -d mysql:5.6 --character-set-server=utf8
     
     - name: Composer install
       run: |
         composer update --prefer-lowest --prefer-stable
         composer install
+        
+    - name: database config
+      run: |
+        cp .env.example .env
+        cp app_local.example.php app_local.php
+        
+    - name: Run PHPUnit
+      run: |   
+        if [[ ${{ matrix.db-type }} == 'mysql' && ${{ matrix.php-version }} != '7.2' ]]; then export DB_URL='mysql://root:secret@127.0.0.1/test_myapp'; fi
+        if [[ ${{ matrix.db-type }} == 'mysql' && ${{ matrix.php-version }} == '7.2' ]]; then export DB_URL='mysql://root:secret@127.0.0.1/test_myapp?encoding=utf8'; fi
+        if [[ ${{ matrix.php-version }} == '7.4' ]]; then
+          export CODECOVERAGE=1 && vendor/bin/phpunit --verbose --coverage-clover=coverage.xml
+        else
+          vendor/bin/phpunit
+        fi
         
     - name: run test
       run: |
