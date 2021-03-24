@@ -36,8 +36,8 @@ jobs:
         
     - name: database config
       run: |
-        cp .env.example .env
-        cp app_local.example.php app_local.php
+        cp config/.env.example config/.env
+        cp config/app_local.example.php config/app_local.php
         
     - name: Run PHPUnit
       run: |   
