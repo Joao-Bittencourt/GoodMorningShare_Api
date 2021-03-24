@@ -31,7 +31,7 @@ jobs:
     
     - name: Composer install
       run: |
-        composer update --prefer-lowest --prefer-stable
+        composer update
         composer install
         
     - name: database config
