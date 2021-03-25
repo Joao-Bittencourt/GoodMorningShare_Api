@@ -4,8 +4,9 @@ os: linux
 dist: xenial
 
 php:
-  - 7.1
+  - 7.2
   - 7.3
+  - 7.4
 
 env:
   jobs:
@@ -17,10 +18,13 @@ services:
 jobs:
   fast_finish: true
   include:
-    - php: 7.1
+    - php: 7.2
+      env: DB=mysql
+    
+    - php: 7.3
       env: DB=mysql
 
-    - php: 7.3
+    - php: 7.4
       env: DB=mysql
 
 before_script:
