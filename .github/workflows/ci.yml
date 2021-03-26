@@ -45,7 +45,10 @@ jobs:
       run: |
         composer update
         composer install   
-        
+    - name: arquivos
+      run: |
+       cp config/.env.example config/.env
+       cp config/app_local.example.php config/app_local.php
     - name: Run PHPUnit
       run: |   
         vendor/bin/phpunit
