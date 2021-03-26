@@ -26,15 +26,8 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v1  
       
-    - name: Shutdown Ubuntu MySQL (SUDO)
-      run: sudo service mysql stop
-      
-    - name: Set up MySQL 5.7
-      uses: mirromutth/mysql-action@master
-      with:
-        mysql version: 5.7
-        mysql database: test
-        mysql root password: secret
+    - name: Setup MySQL latest
+      run: docker run --rm --name=mysqld -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=cakephp_test -p 3306:3306 -d mysql --default-authentication-plugin=mysql_native_password --disable-log-bin
            
     - name: Composer install
       run: |
