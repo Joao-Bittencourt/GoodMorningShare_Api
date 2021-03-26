@@ -38,6 +38,7 @@ jobs:
       run: |
         cp config/.env.example config/.env
         cp config/app_local.example.php config/app_local.php
+        export DB_URL='mysql://root:root@127.0.0.1/cakephp'
         
     - name: Run PHPUnit
       run: |   
