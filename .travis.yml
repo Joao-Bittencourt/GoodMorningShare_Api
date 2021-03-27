@@ -28,8 +28,9 @@ jobs:
       env: DB=mysql
 
 before_script:
-
-  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cake;'; fi"
+  - cp config/.env.example config/.env
+  - cp config/app_local.example.php config/app_local.php
+  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cakephp;'; fi"
   - composer update;
   
 script:
