@@ -20,14 +20,14 @@ jobs:
           - php-version: '7.2'
             db-type: 'mysql'
     services:
-    mysql:
-        image: mysql:5.7
-        env:
+       mysql:
+          image: mysql:5.7
+          env:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: cakephp
-        ports:
+          ports:
             - 3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
         
     steps:
 #    - name: Setup MySQL latest
