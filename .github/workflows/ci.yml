@@ -44,6 +44,10 @@ jobs:
          cp config/.env.example config/.env
          cp config/app_local.example.php config/app_local.php
          
+    - name: phpunit-coverage-badge
+      uses: timkrase/phpunit-coverage-badge@v1.2.0
+
+         
     - name: Run PHPUnit
       run: |       
        if [[ ${{ matrix.php-version }} == '7.4' ]]; then
