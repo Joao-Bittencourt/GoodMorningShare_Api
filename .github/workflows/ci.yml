@@ -7,7 +7,10 @@ on:
   pull_request:
     branches:
       - '*'
-
+env:
+      DB_DATABASE: cakephp
+      DB_USER: root
+      DB_PASSWORD: root
 jobs:
   testsuite:
     runs-on: ubuntu-18.04
@@ -19,15 +22,6 @@ jobs:
         include:
           - php-version: '7.2'
             db-type: 'mysql'
-    services:
-       mysql:
-          image: mysql:5.7
-          env:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: cakephp
-          ports:
-            - 3306
-          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
         
     steps:
 #    - name: Setup MySQL latest
@@ -35,7 +29,12 @@ jobs:
 #     run: docker run --rm --name=mysqld -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=cakephp -p 3306:3306 -d mysql --default-authentication-plugin=mysql_native_password --disable-log-bin
 
     - uses: actions/checkout@v2
-
+ 
+    - name: Set up MySQL
+      run: |
+          sudo /etc/init.d/mysql start
+          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+    
     - name: Composer install
       run: | 
           composer update 
