@@ -49,11 +49,7 @@ jobs:
           vendor/bin/phpunit
         fi
    
-    - name: Submit code coverage
-      if: matrix.php-version == '7.4'
+    - name: Code Coverage Report
+      if: success() && matrix.php-version == '7.4' && matrix.db-type == 'mysql'
       uses: codecov/codecov-action@v1
       
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}  
