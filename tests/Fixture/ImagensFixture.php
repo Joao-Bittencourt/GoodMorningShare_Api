@@ -45,7 +45,7 @@ class ImagensFixture extends TestFixture
             [
                 'id' => 1,
                 'nome' => 'Lorem ipsum dolor sit amet',
-                'url' => 'https://teste.com',
+                'url' => 'https://picsum.photos/id/10/2500/1667',
                 'created' => '2021-02-20 17:36:46',
                 'created_by' => 1,
                 'modified' => '2021-02-20 17:36:46',
