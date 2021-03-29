@@ -52,3 +52,8 @@ jobs:
     - name: Submit code coverage
       if: matrix.php-version == '7.4'
       uses: codecov/codecov-action@v1
+      
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}  
