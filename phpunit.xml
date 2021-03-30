@@ -43,5 +43,7 @@
         <log type="coverage-html" target="webroot/coverage" charset="UTF-8" yui="true" highlight="true"/>
         <log type="coverage-text" target="webroot/coverage/coverage.txt"/>
         <log type="coverage-clover" target="webroot/coverage/clover.xml"/>
+        <log type="coverage-clover" target="clover.xml"/>
+   
     </logging>
 </phpunit>

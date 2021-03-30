@@ -53,3 +53,10 @@ jobs:
       if: success() && matrix.php-version == '7.4' && matrix.db-type == 'mysql'
       uses: codecov/codecov-action@v1
       
+my-tests-with-coverage:
+      tests:
+        override:
+          - command: vendor/bin/phpunit --verbose --coverage-clover=coverage.xml
+            coverage:
+              file: coverage.xml
+              format: php-clover
