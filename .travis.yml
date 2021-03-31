@@ -30,7 +30,7 @@ jobs:
 before_script:
   - cp config/.env.example config/.env
   - cp config/app_local.example.php config/app_local.php
-  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e MYSQL_ROOT_PASSWORD=root 'CREATE DATABASE cakephp;'; fi"
+  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cakephp;'  -uroot -proot; fi"
   - composer update;
   
 script:
