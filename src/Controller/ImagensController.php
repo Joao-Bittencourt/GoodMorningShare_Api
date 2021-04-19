@@ -34,11 +34,7 @@ class ImagensController extends AppController {
     }
 
     public function listar() {
-        echo env('DB_USERNAME', 'my_app');
-        echo env('DB_PASSWORD', 'secret');
-        echo env('DB_DATABASE', 'my_app');
-        echo  env('DB_ENCODING', 'utf8mb4');
-        die();
+        
         $imagens = $this->Imagens->find('all')->toArray();
         $response = $this->response
                 ->withType('application/json')
