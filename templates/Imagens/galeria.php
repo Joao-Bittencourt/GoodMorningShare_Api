@@ -1,4 +1,11 @@
 <?php
+
+
+    echo $this->Html->image($imagem['url'], ['fullBase' => true]);
+?>
+    
+
+<?php
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Imagen $imagens

@@ -129,4 +129,9 @@ class ImagensController extends AppController {
         return $response;
     }
 
+    public function galeria() {
+        
+        $imagens = $this->Imagens->find('all')->toArray();
+        $this->set('imagens', $imagens);
+    }
 }

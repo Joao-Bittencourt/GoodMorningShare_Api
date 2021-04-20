@@ -44,8 +44,8 @@ return [
              */
             //'port' => 'non_standard_port_number',
             'host' => env('DB_HOST', 'localhost'),
-            'username' => env('DB_USERNAME', 'my_app'),
-            'password' => env('DB_PASSWORD', 'secret'),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', ''),
             'database' => env('DB_DATABASE', 'my_app'),
             'encoding' => env('DB_ENCODING', 'utf8mb4'),     
             
@@ -69,7 +69,7 @@ return [
             'host' => 'localhost',
             //'port' => 'non_standard_port_number',
             'username' => 'root',
-            'password' => 'root',
+            'password' => '',
             'database' => 'cakephp',
             //'schema' => 'myapp',
             'url' => env('DATABASE_TEST_URL', null),
