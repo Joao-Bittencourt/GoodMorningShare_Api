@@ -134,4 +134,21 @@ class ImagensController extends AppController {
         $imagens = $this->Imagens->find('all')->toArray();
         $this->set('imagens', $imagens);
     }
+
+    public function deletar($id = null){
+        if ( empty($id)){
+            return;
+            die();
+        }
+      
+        $this->request->allowMethod(['post', 'delete']);
+        $imagen = $this->Imagens->get($id);
+        if ($this->Imagens->delete($imagen)) {
+            $this->Flash->success(__('has been deleted.'));
+        } else {
+            $this->Flash->error(__('could not be deleted. Please, try again.'));
+        }
+     
+        return $this->redirect(['action' => 'galeria']);
+    }
 }
