@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Cake\ORM\TableRegistry;
 use App\Model\Entity\Device;
+use Cake\Core\Configure;
 
 class ImagensController extends AppController {
 
@@ -34,6 +35,16 @@ class ImagensController extends AppController {
     }
 
     public function listar() {
+       
+        if (!Configure::read('debug')) {
+            $pathData = dirname(dirname(__DIR__)) . DS . 'resources' . DS . 'data.json';
+            $dados = file_get_contents($pathData);
+            $response = $this->response
+                ->withType('application/json')
+                ->withStatus(200)
+                ->withStringBody($dados);
+             return $response;
+        }
         
         $imagens = $this->Imagens->find('all')->toArray();
         $response = $this->response
