@@ -47,6 +47,7 @@ class ImagensController extends AppController {
         
         $this->set('imagem', $imagem);
         $this->viewBuilder()->setLayout('empy');
+        $this->render('detalhar2');
     }
 
     public function listar() {
