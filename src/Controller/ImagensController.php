@@ -25,11 +25,26 @@ class ImagensController extends AppController {
                     ->withStringBody(json_encode($retorno));
             return $response;
         }
-        $imagem = $this->Imagens->find()
-                ->where(['id' => $id])
-                ->first()
-                ->toArray();
+        
+        if (!Configure::read('debug')) {
+            $pathData = dirname(dirname(__DIR__)) . DS . 'resources' . DS . 'data.json';
+            $dados = file_get_contents($pathData);
+            $arrDados = json_decode($dados, true);
 
+            foreach( $arrDados as $dado) {
+                if($dado['id'] == $id) {
+                    $imagem = $dado;
+                    break;
+                }
+            }
+        } else {
+        
+            $imagem = $this->Imagens->find()
+                    ->where(['id' => $id])
+                    ->first()
+                    ->toArray();
+        }
+        
         $this->set('imagem', $imagem);
         $this->viewBuilder()->setLayout('empy');
     }
@@ -38,7 +53,7 @@ class ImagensController extends AppController {
        
         if (!Configure::read('debug')) {
             $pathData = dirname(dirname(__DIR__)) . DS . 'resources' . DS . 'data.json';
-            $dados = file_get_contents($pathData);
+            $dados = file_get_contents($pathData);         
             $response = $this->response
                 ->withType('application/json')
                 ->withStatus(200)

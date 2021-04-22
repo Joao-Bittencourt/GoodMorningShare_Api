@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html>
+<html style="100%">
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-              
+        <meta name="viewport" content="width=device-width, minimun-scale=0.1">          
     </head>
     <body style="margin: 0px; background: #0e0e0e; height: 100%">
-
-        <div class="container">
-            <?= $this->Flash->render() ?>
-            <?= $this->fetch('content') ?>
-        </div>
-
+        <?= $this->Flash->render() ?>
+        <?= $this->fetch('content') ?>
     </body>
 </html>
