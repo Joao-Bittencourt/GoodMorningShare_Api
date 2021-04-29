@@ -26,7 +26,7 @@ class ImagensController extends AppController {
             return $response;
         }
         
-        if (!Configure::read('debug')) {
+        if (!Configure::read('debug'))  {
             $pathData = dirname(dirname(__DIR__)) . DS . 'resources' . DS . 'data.json';
             $dados = file_get_contents($pathData);
             $arrDados = json_decode($dados, true);
