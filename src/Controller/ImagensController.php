@@ -20,6 +20,8 @@ class ImagensController extends AppController {
             $retorno['mensage'] = ['Invalid request.'];
             $retorno['error'] = ['99'];
             $response = $this->response
+                    ->cors($this->request)
+                    ->allowOrigin(['*'])
                     ->withType('application/json')
                     ->withStatus(400)
                     ->withStringBody(json_encode($retorno));
